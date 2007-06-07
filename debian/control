@@ -2,6 +2,7 @@ Source: sysvinit
 Section: base
 Maintainer: Alexander Shishkin <alexander.shishkin@siemens.com>
 Standards-Version: 3.6.2.1
+XCS-Cross-Host-Build-Depends: bash
 Build-Depends: bash
 
 Package: sysvinit
