@@ -1,11 +1,12 @@
 Source: sysvinit
-Section: base
-Maintainer: Alexander Shishkin <alexander.shishkin@siemens.com>
+Section: core
+Maintainer: Alexander Shishkin <virtuoso@slind.org>
 Standards-Version: 3.6.2.1
 XCS-Cross-Host-Build-Depends: bash
 Build-Depends: bash
 
 Package: sysvinit
+Section: core
 Architecture: any
 Priority: optional
 Pre-Depends: ${shlibs:Depends}, initscripts, sysv-rc (>= 2.85-2)
@@ -21,6 +22,7 @@ Description: System-V like init
  see the manual page init(8).
 
 Package: sysv-rc
+Section: core
 Essential: yes
 Priority: required
 Architecture: all
@@ -30,6 +32,7 @@ Description: Standard boot mechanism using symlinks in /etc/rc?.d
  links in the /etc/rc?.d directories.
 
 Package: initscripts
+Section: core
 Essential: yes
 Priority: required
 Architecture: any
