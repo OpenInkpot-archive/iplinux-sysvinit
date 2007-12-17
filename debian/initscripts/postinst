@@ -135,7 +135,7 @@ updatercd bootlogd	start 5 S .
 updatercd checkroot.sh	start 10 S .
 updatercd modutils	start 20 S .
 updatercd checkfs.sh	start 30 S .
-#updatercd mountall.sh	start 35 S .
+updatercd mountall.sh	start 35 S .
 updatercd hostname.sh	start 40 S .
 updatercd network	start 40 S .
 #updatercd mountnfs.sh	start 45 S .

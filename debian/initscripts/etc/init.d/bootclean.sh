@@ -45,14 +45,14 @@ cleantmp() {
 	#	it really is a/the temp directory we're cleaning.
 	#
 	EXCEPT='! -name .
-		! ( -path ./lost+found -uid 0 )
-		! ( -path ./quota.user -uid 0 )
-		! ( -path ./aquota.user -uid 0 )
-		! ( -path ./quota.group -uid 0 )
-		! ( -path ./aquota.group -uid 0 )
-		! ( -path ./.journal -uid 0 )
-		! ( -path ./.clean -uid 0 )
-		! ( -path './...security*' -uid 0 )'
+		! ( -path ./lost+found -user root )
+		! ( -path ./quota.user -user root )
+		! ( -path ./aquota.user -user root )
+		! ( -path ./quota.group -user root )
+		! ( -path ./aquota.group -user root )
+		! ( -path ./.journal -user root )
+		! ( -path ./.clean -user root )
+		! ( -path './...security*' -user root )'
 
 	( if cd /tmp && [ "`find . -maxdepth 0 -perm -002`" = "." ]
 	  then
@@ -61,7 +61,7 @@ cleantmp() {
 				! -type d -print0 | xargs -0r rm -f
 		# And then all empty directories.
 		find . -depth -xdev $DEXPR $EXCEPT \
-				-type d -empty -exec rmdir \{\} \;
+				-type d -exec rmdir \{\} \;
 		rm -f .X*-lock
 	  fi
 	)
@@ -86,7 +86,7 @@ cleanrun() {
 	#
 	#	Clean up /var/run.
 	#
-
+	rm -f /var/run/runlevel /var/run/rc-*.init
 	[ -f /var/run/.clean ] && return
 
 	[ "$VERBOSE" != no ] && echo -n " /var/run"
@@ -118,7 +118,8 @@ bootclean() {
                        [ -x /usr/bin/stat ] && cleanuid=`/usr/bin/stat -c %u $cleandir/.clean`
                        # Poor's man stat %u, since stat (and /usr) might not be
                        # available in some bootup stages
-                       [ -z "$cleanuid" ] && cleanuid=`/bin/find $cleandir/.clean -printf %U`
+                       [ -z "$cleanuid" ] && cleanuid=`find $cleandir/.clean -printf %U 2>/dev/null`
+                       [ -z "$cleanuid" ] && cleanuid=`ls -l $cleandir/.clean | awk '{print $3;}' | sed -e 's/root/0/g'`
                        [ "$cleanuid" -ne 0 ] && rm -f $cleandir/.clean
                fi
         done
