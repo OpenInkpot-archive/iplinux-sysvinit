@@ -1,3 +1,9 @@
+sysvinit (2.86.ds1-slind1.oi1) asimov; urgency=low
+
+  * rc: Always run K* scripts
+
+ -- Yauhen Kharuzhy <jekhor@gmail.com>  Tue, 14 Oct 2008 17:10:28 +0000
+
 sysvinit (2.86.ds1-slind1) testing; urgency=low
 
   * Updated build depends
