@@ -31,6 +31,13 @@ shells running the named scripts.
 Tells \fIpidof\fP to omit processes with that process id. The special
 pid \fB%PPID\fP can be used to name the parent process of the \fIpidof\fP
 program, in other words the calling shell or shell script.
+.SH "EXIT STATUS"
+.TP
+.B 0
+At least one program was found with the requested name.
+.TP
+.B 1
+No program was found with the requested name.
 .SH NOTES
 \fIpidof\fP is simply a (symbolic) link to the \fIkillall5\fP program,
 which should also be located in \fP/sbin\fP.

@@ -100,10 +100,11 @@ absolute time in the format \fIhh:mm\fP, in which \fIhh\fP is the hour
 Second, it can be in the format \fB+\fP\fIm\fP, in which \fIm\fP is the
 number of minutes to wait.  The word \fBnow\fP is an alias for \fB+0\fP.
 .PP
-If shutdown is called with a delay, it creates the advisory file
+If shutdown is called with a delay, it will create the advisory file
 .I /etc/nologin
 which causes programs such as \fIlogin(1)\fP to not allow new user
-logins. Shutdown removes this file if it is stopped before it
+logins. This file is created five minutes before the shutdown sequence
+starts. Shutdown removes this file if it is stopped before it
 can signal init (i.e. it is cancelled or something goes wrong).
 It also removes it before calling init to change the runlevel.
 .PP

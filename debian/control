@@ -1,0 +1,43 @@
+Source: sysvinit
+Section: core
+Maintainer: Alexander Shishkin <virtuoso@slind.org>
+Standards-Version: 3.6.2.1
+XCS-Cross-Host-Build-Depends: bash
+Build-Depends: bash
+
+Package: sysvinit
+Section: core
+Architecture: any
+Priority: optional
+Pre-Depends: ${shlibs:Depends}, initscripts, sysv-rc (>= 2.85-2)
+Depends: slind-virtual-coreutils
+Conflicts: busybox, busybox-static
+Replaces: busybox, busybox-static
+Provides: slind-virtual-init
+Description: System-V like init
+ Init is the first program to run after your system is booted, and
+ continues to run as process number 1 until your system halts. Init's
+ job is to start other programs that are essential to the operation of
+ your system. All processes are descended from init. For more information,
+ see the manual page init(8).
+
+Package: sysv-rc
+Section: core
+Essential: yes
+Priority: required
+Architecture: all
+Description: Standard boot mechanism using symlinks in /etc/rc?.d
+ This package provides support for the System-V like system of booting,
+ shutting down and changing runlevels configured through symbolic
+ links in the /etc/rc?.d directories.
+
+Package: initscripts
+Section: core
+Essential: yes
+Priority: required
+Architecture: any
+Pre-Depends: sysv-rc
+Depends: ${shlibs:Depends}, ${glibc:Depends}, dpkg, ${mount:Depends}, slind-virtual-util-linux, slind-virtual-coreutils
+Description: Standard scripts needed for booting and shutting down
+ These scripts are meant for standard Slind installations.
+
