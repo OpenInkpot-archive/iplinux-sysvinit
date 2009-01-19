@@ -16,6 +16,8 @@ DEB_HOST_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_HOST_GNU_SYSTEM ?= $(shell dpkg-architecture -qDEB_HOST_GNU_SYSTEM)
 DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 
+CC=$(DEB_HOST_GNU_TYPE)-gcc
+
 LIBC6	= libc6
 ifeq ($(DEB_HOST_ARCH), alpha)
 LIBC6	= libc6.1
@@ -31,7 +33,7 @@ endef
 build:
 # Builds the binary package.
 	$(checkdir)
-	(cd src; make DISTRO=Debian)
+	(cd src; MAKEFLAGS="CC=$(CC)" make DISTRO=Debian)
 	$(CC) -Wall -s -o debian/readlink debian/readlink.c
 	touch build
 
