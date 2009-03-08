@@ -1,3 +1,9 @@
+sysvinit (2.86.ds1-zz.ip1) asimov; urgency=low
+
+  * First build for IPlinux.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 09 Mar 2009 00:35:47 +0600
+
 sysvinit (2.86.ds1-slind1.oi1) asimov; urgency=low
 
   * rc: Always run K* scripts
