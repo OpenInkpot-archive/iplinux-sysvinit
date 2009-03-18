@@ -1,3 +1,10 @@
+sysvinit (2.86.ds1-zz.ip2) asimov; urgency=low
+
+  * Cleaned up checkroot.sh in order to avoid breaking on ">&1" construct,
+    which is not supported by busybox ash.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Thu, 19 Mar 2009 01:09:37 +0600
+
 sysvinit (2.86.ds1-zz.ip1) asimov; urgency=low
 
   * First build for IPlinux.
