@@ -33,8 +33,40 @@ export VERBOSE
 trap ":" INT QUIT TSTP
 
 #
+#	Splash progress bar support
+#
+if [ -e /sbin/splash-functions ]; then
+	. /sbin/splash-functions
+else
+	splash_progress() { return 1; }
+fi
+
+#
+# Stub to do progress bar ticks
+#
+startup_progress() {
+    # Avoid divide by zero
+    if [ 0 -eq "$num_steps" ] ; then return; fi
+
+	step=$(($step + 1))
+	progress=$((100 * $step / $num_steps))
+	splash_progress "$progress" || true
+}
+
+#
+# Count the number of scripts
+#
+num_steps=0
+for s in /etc/rcS.d/S??* /etc/rc2.d/S??*; do
+	[ ! -f "$s" ] && continue
+	num_steps=$(($num_steps + 1))
+done
+step=0
+
+#
 #	Call all parts in order.
 #
+
 for i in /etc/rcS.d/S??*
 do
 	# Ignore dangling symlinks for now.
@@ -54,6 +86,8 @@ do
 			$i start
 			;;
 	esac
+
+	startup_progress
 done
 
 #
@@ -79,3 +113,5 @@ then
   /etc/init.d/rc 2
 fi
 
+splash_progress "100"
+splash_progress "exit"
