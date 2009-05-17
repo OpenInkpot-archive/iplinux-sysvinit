@@ -1,3 +1,9 @@
+sysvinit (2.86.ds1-zz.ip4) asimov; urgency=low
+
+  * Shutdown scripts cleanup.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 18 May 2009 05:11:01 +0700
+
 sysvinit (2.86.ds1-zz.ip3) asimov; urgency=low
 
   [Alexander Kerner]
