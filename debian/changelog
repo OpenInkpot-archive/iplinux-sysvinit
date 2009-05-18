@@ -1,3 +1,10 @@
+sysvinit (2.86.ds1-zz.ip5) asimov; urgency=low
+
+  * init.d/halt should call poweroff, not halt
+  * Removed obsolete umountnfs.sh script handling from postinst
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 18 May 2009 22:48:19 +0700
+
 sysvinit (2.86.ds1-zz.ip4) asimov; urgency=low
 
   * Shutdown scripts cleanup.
