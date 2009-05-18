@@ -138,7 +138,6 @@ updatercd checkfs.sh	start 30 S .
 updatercd mountall.sh	start 35 S .
 updatercd hostname.sh	start 40 S .
 updatercd network	start 40 S .
-#updatercd mountnfs.sh	start 45 S .
 updatercd bootmisc.sh	start 55 S .
 updatercd urandom	start 55 S . start 30 0 6 .
 
@@ -147,8 +146,6 @@ updatercd urandom	start 55 S . start 30 0 6 .
 #
 updatercd sendsigs	start 20 0 6 .
 updatercd umountfs	start 40 0 6 .
-updatercd halt		start 90 0 .
-updatercd reboot	start 90 6 .
 updatercd rmnologin	start 99 2 3 4 5 .
 updatercd single        start 20 1 .
 updatercd stop-bootlogd	start 99 2 3 4 5 .
