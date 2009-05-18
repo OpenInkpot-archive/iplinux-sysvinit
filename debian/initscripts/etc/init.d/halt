@@ -1,4 +1,4 @@
 #!/bin/sh
-echo "Halt..."
-halt -f
+echo "Power off..."
+poweroff -f
 : exit 0
