@@ -33,7 +33,7 @@ then
 	rm -f $INITCTL
 	mknod -m 600 $INITCTL p
 fi
-[ "`readlink /sbin/init`" != "/bin/busybox" ] && kill -USR1 1
+expr "`readlink /sbin/init`" : ".*busybox.*" >/dev/null || kill -USR1 1
 
 #
 # Execute swapon command again, in case we want to swap to
