@@ -219,6 +219,7 @@ endif
 	install -d -g root -m 755 -o root $(tmp)/usr/sbin
 	install -g root -m 755 debian/sysv-rc/sbin/invoke-rc.d $(tmp)/usr/sbin
 	install -g root -m 755 debian/sysv-rc/sbin/update-rc.d $(tmp)/usr/sbin
+	install -g root -m 755 debian/sysv-rc/sbin/service $(tmp)/usr/sbin
 	install -g root -m 755 debian/sysv-rc/postinst $(tmp)/DEBIAN/postinst
 	install -g root -m 755 debian/sysv-rc/postrm $(tmp)/DEBIAN/postrm
 	
