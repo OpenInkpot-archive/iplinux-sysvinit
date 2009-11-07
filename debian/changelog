@@ -1,3 +1,9 @@
+sysvinit (2.86.ds1-zz.ip8) asimov; urgency=low
+
+  * Add service(8) to package (OI#646)
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sun, 08 Nov 2009 05:23:08 +0600
+
 sysvinit (2.86.ds1-zz.ip7) asimov; urgency=low
 
   * Fixed init.d/mountall.sh broken during last busybox update.
