@@ -1,8 +1,8 @@
-sysvinit (2.86.ds1-zz.ip9) UNRELEASED; urgency=low
+sysvinit (2.86.ds1-zz.ip9) zelazny; urgency=low
 
-  * Start cleaning up scripts.
+  * Implement full functionality of update-rc.d from Debian.
 
- -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sat, 21 Nov 2009 06:02:28 +0600
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Fri, 09 Apr 2010 17:32:00 +0700
 
 sysvinit (2.86.ds1-zz.ip8) asimov; urgency=low
 
