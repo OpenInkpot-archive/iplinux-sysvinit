@@ -76,43 +76,7 @@ updatercd() {
 	done
 }
 
-if [ ! -f /etc/default/rcS ]
-then
-	#
-	#	Install sample rcS file.
-	#
-	cp /usr/share/initscripts/default.rcS /etc/default/rcS
-else
-	#
-	#	Change GMT=-u to UTC=yes etc in existing rcS file.
-	#
-	if grep -q ^GMT /etc/default/rcS
-	then
-		cp /etc/default/rcS /etc/default/rcS.TMP
-		sed	-e "s/^GMT=.*\(-u\|--utc\).*/UTC=yes/" \
-			-e "s/^GMT=.*/UTC=no/" \
-			-e 's/# Set GMT="-u".*/# Set UTC to yes or no/' \
-			< /etc/default/rcS.TMP > /etc/default/rcS
-		if [ -s /etc/default/rcS ]
-		then
-			rm -f /etc/default/rcS.TMP
-		fi
-	fi
-fi
-
-#
-#	See if there were saved variables.
-#
-if [ -f /etc/default/rcS.sed ]
-then
-	cp /etc/default/rcS /etc/default/rcS.TMP
-	sed -f /etc/default/rcS.sed < /etc/default/rcS.TMP > /etc/default/rcS
-	if [ -s /etc/default/rcS ]
-	then
-		rm -f /etc/default/rcS.TMP
-	fi
-	rm -f /etc/default/rcS.sed
-fi
+rm -f /etc/default/rcS
 
 #
 #	Defaults for 2.85-16 and up for mountvirtfs levels changed,

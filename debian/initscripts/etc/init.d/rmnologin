@@ -7,7 +7,6 @@
 #
 
 DELAYLOGIN=yes
-[ -f /etc/default/rcS ] && . /etc/default/rcS
 
 PATH=/lib/init:/sbin:/bin
 

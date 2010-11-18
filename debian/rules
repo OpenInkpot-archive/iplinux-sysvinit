@@ -126,7 +126,6 @@ ifeq ($(INSTALL_DOCS), yes)
 	chmod 644 $(tmp)$(doc)/initscripts/changelog
 	gzip -9f $(tmp)$(doc)/initscripts/*
 endif
-	cp -af debian/initscripts/share/* $(tmp)/usr/share/initscripts
 	cp -af debian/initscripts/etc/* $(tmp)/etc
 
 	# no bootlogd here

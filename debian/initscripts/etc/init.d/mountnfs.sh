@@ -12,7 +12,6 @@
 
 VERBOSE=yes
 TMPTIME=0
-[ -f /etc/default/rcS ] && . /etc/default/rcS
 . /etc/init.d/bootclean.sh
 
 #
