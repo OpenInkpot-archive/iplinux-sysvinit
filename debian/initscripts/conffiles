@@ -1,6 +1,5 @@
 /etc/init.d/bootclean.sh
 /etc/init.d/bootmisc.sh
-/etc/init.d/checkfs.sh
 /etc/init.d/checkroot.sh
 /etc/init.d/hostname.sh
 /etc/init.d/mountall.sh

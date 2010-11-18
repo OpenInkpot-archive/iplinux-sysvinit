@@ -77,6 +77,7 @@ updatercd() {
 }
 
 rm -f /etc/default/rcS
+rm -f /etc/rc?.d/[SK]??checkfs.sh /etc/init.d/checkfs.sh
 
 #
 #	Defaults for 2.85-16 and up for mountvirtfs levels changed,
@@ -98,7 +99,6 @@ updatercd mountvirtfs	start 2 S . start 36 S .
 updatercd bootlogd	start 5 S .
 updatercd checkroot.sh	start 10 S .
 updatercd modutils	start 20 S .
-updatercd checkfs.sh	start 30 S .
 updatercd mountall.sh	start 35 S .
 updatercd hostname.sh	start 40 S .
 updatercd network	start 40 S .
