@@ -9,5 +9,4 @@
 /etc/init.d/sendsigs
 /etc/init.d/single
 /etc/init.d/umountfs
-/etc/init.d/urandom
 /etc/default/tmpfs

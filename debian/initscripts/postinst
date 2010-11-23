@@ -78,17 +78,8 @@ updatercd() {
 
 rm -f /etc/default/rcS
 rm -f /etc/rc?.d/[SK]??checkfs.sh /etc/init.d/checkfs.sh
-
-#
-#	Defaults for 2.85-16 and up for mountvirtfs levels changed,
-#	so remove the existing startup links if we upgraded from
-#	an older version.
-#
-case "$oldver" in
-	2.85-1[0-5])
-		update-rc.d -f mountvirtfs remove >/dev/null 2>&1 ||:
-		;;
-esac
+rm -f /etc/rc?.d/[SK]36mountvirtfs
+rm -f /etc/rc?.d/[SK]??urandom
 
 #
 #	Okay, we could do this with update-rc.d, but that would probably
@@ -103,7 +94,6 @@ updatercd mountall.sh	start 35 S .
 updatercd hostname.sh	start 40 S .
 updatercd network	start 40 S .
 updatercd bootmisc.sh	start 55 S .
-updatercd urandom	start 55 S . start 30 0 6 .
 
 #
 #	Links in "normal" runlevels.
