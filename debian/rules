@@ -33,8 +33,8 @@ endef
 build:
 # Builds the binary package.
 	$(checkdir)
-	(cd src; MAKEFLAGS="CC=$(CC)" make DISTRO=Debian)
-	$(CC) -Wall -s -o debian/readlink debian/readlink.c
+	#(cd src; MAKEFLAGS="CC=$(CC)" make DISTRO=Debian)
+	#$(CC) -Wall -s -o debian/readlink debian/readlink.c
 	touch build
 
 # Make a binary package (.deb file)
@@ -80,7 +80,7 @@ endif
 	install -d -g root -m 755 -o root $(tmp)/usr/bin
 	install -d -g root -m 755 -o root $(tmp)/usr/sbin
 
-	(cd src; make ROOT=$(tmp) DISTRO=Debian install )
+	#(cd src; make ROOT=$(tmp) DISTRO=Debian install )
 	
 	# remove mountpoint
 	rm -f $(tmp)/bin/mountpoint
@@ -116,9 +116,8 @@ endif
 	install -d -g root -m 755 -o root $(tmp)
 	install -d -g root -m 755 -o root $(tmp)/{DEBIAN,etc,usr,sbin,lib}
 	install -d -g root -m 755 -o root $(tmp)/lib/init
-	install -d -g root -m 755 -o root $(tmp)/usr/share
-	install -d -g root -m 755 -o root $(tmp)/usr/share/initscripts
 ifeq ($(INSTALL_DOCS), yes)
+	install -d -g root -m 755 -o root $(tmp)/usr/share
 	# debian docs
 	install -d -g root -m 755 -o root $(tmp)$(doc)/initscripts
 	sed -ne '/sysvinit (2.84-3)/q' -e p < debian/changelog \
@@ -133,10 +132,8 @@ endif
 	rm -f $(tmp)/etc/default/bootlogd
 
 	chmod 755 $(tmp)/etc/init.d/[a-z]*
-	chmod 644 $(tmp)/etc/init.d/bootclean.sh
 	chmod -R g-w $(tmp)
 	chown -R root.root $(tmp)
-	install -d -g root -m 755 -o root $(tmp)/bin
 	install -d -g root -m 755 -o root $(tmp)/etc/default
 ifeq ($(INSTALL_DOCS), yes)
 	# man pages
@@ -144,20 +141,14 @@ ifeq ($(INSTALL_DOCS), yes)
 	install -d -g root -m 755 -o root $(tmp)/usr/share/man/man1
 	install -d -g root -m 755 -o root $(tmp)/usr/share/man/man5
 	install -d -g root -m 755 -o root $(tmp)/usr/share/man/man8
-	install -g root -m 644 debian/initscripts/man/fsck.nfs.8 \
-		$(tmp)/usr/share/man/man8/fsck.nfs.8
 	install -g root -m 644 debian/initscripts/rcS.5 \
 		$(tmp)/usr/share/man/man5
-	install -g root -m 644 man/mountpoint.1 $(tmp)/usr/share/man/man1
 	install -g root -m 755 debian/readlink $(tmp)/lib/init
 	gzip -9f $(tmp)/usr/share/man/man*/*.[0-9]
 	install -g root -m 644 -o root debian/initscripts/copyright \
 	  $(tmp)$(doc)/initscripts/copyright
 endif
 	install -d -g root -m 755 -o root $(tmp)/var/lib/urandom
-	install -g root -m 755 debian/initscripts/sbin/fsck.nfs \
-		$(tmp)/sbin/fsck.nfs
-	install -g root -m 755 src/mountpoint $(tmp)/bin
 	install -g root -m 755 debian/initscripts/preinst  $(tmp)/DEBIAN
 	install -g root -m 755 debian/initscripts/postinst $(tmp)/DEBIAN
 	install -g root -m 644 -o root debian/initscripts/conffiles \
@@ -182,8 +173,8 @@ binary-indep:   build checkroot
 	-rm -rf $(tmp)
 	install -d -g root -m 755 -o root $(tmp)
 	install -d -g root -m 755 -o root $(tmp)/{DEBIAN,etc,usr}
-	install -d -g root -m 755 -o root $(tmp)/usr/share
 ifeq ($(INSTALL_DOCS), yes)
+	install -d -g root -m 755 -o root $(tmp)/usr/share
 	install -d -g root -m 755 -o root $(tmp)$(doc)/sysv-rc
 	sed -ne '/sysvinit (2.84-3)/q' -e p < debian/changelog \
 		> $(tmp)$(doc)/sysv-rc/changelog

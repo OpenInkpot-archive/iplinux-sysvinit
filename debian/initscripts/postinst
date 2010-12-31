@@ -86,7 +86,7 @@ rm -f /etc/rc?.d/[SK]??urandom
 #	be pretty slow. This way we win some speed.
 #	DO NOT FOLLOW THIS EXAMPLE IN OTHER PACKAGES.
 #
-updatercd mountvirtfs	start 2 S . start 36 S .
+updatercd mountvirtfs	start 2 S .
 updatercd bootlogd	start 5 S .
 updatercd checkroot.sh	start 10 S .
 updatercd modutils	start 20 S .
@@ -100,48 +100,7 @@ updatercd bootmisc.sh	start 55 S .
 #
 updatercd sendsigs	start 20 0 6 .
 updatercd umountfs	start 40 0 6 .
-updatercd rmnologin	start 99 2 3 4 5 .
-updatercd single        start 20 1 .
-updatercd stop-bootlogd	start 99 2 3 4 5 .
-
-#
-#	Remove scripts that were left behind by older glibc (<< 2.3.2.ds1-12)
-#	versions. We have the same functionality in mountvirtfs.
-#
-for i in devpts.sh mountkernfs
-do
-	if [ -f /etc/init.d/$i ]
-	then
-		rm -f /etc/init.d/$i
-		update-rc.d $i remove >/dev/null 2>&1 ||:
-	fi
-done
-
-# Create /dev/pts, /dev/shm, /sys
-if [ `uname -s` = Linux ]
-then
-	#
-	#	Only create /dev/{pts,shm} if /dev is on the
-	#	root file system. If some package has mounted a
-	#	seperate /dev (ramfs from udev, devfs) it is
-	#	responsible for the presence of those subdirs.
-	#
-	if ! mountpoint -q /dev
-	then
-		if [ ! -d /dev/pts ]
-		then
-			mkdir /dev/pts
-		fi
-		if [ ! -d /dev/shm ]
-		then
-			mkdir /dev/shm
-		fi
-	fi
-	if [ ! -d /sys ]
-	then
-		mkdir /sys
-	fi
-fi
+updatercd rmnologin	start 99 2 .
+updatercd stop-bootlogd	start 99 2 .
 
 exit 0
-

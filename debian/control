@@ -35,9 +35,9 @@ Package: initscripts
 Section: core
 Essential: yes
 Priority: required
-Architecture: any
+Architecture: all
 Pre-Depends: sysv-rc
-Depends: ${shlibs:Depends}, ${glibc:Depends}, dpkg, ${mount:Depends}, slind-virtual-util-linux, slind-virtual-coreutils
+Depends: ${shlibs:Depends}, ${glibc:Depends}, dpkg, ${mount:Depends}, slind-virtual-util-linux, slind-virtual-coreutils, busybox (>= 1:1.17.2-2)
 Description: Standard scripts needed for booting and shutting down
  These scripts are meant for standard Slind installations.
 
