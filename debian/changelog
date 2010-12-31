@@ -1,3 +1,9 @@
+sysvinit (2.86.ds1-zz.ip10) zelazny; urgency=low
+
+  * Clean up lot of ancient cruft inherited from Debian
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Fri, 31 Dec 2010 14:30:46 +0100
+
 sysvinit (2.86.ds1-zz.ip9) zelazny; urgency=low
 
   * Implement full functionality of update-rc.d from Debian.
